@@ -194,11 +194,8 @@ async function updatebigcommerceitemprice(item_id,price){
             },
             body: JSON.stringify({ price: price })  // Corrected the price data format using JSON.stringify
         };
-        
-console.log(options);
         const res = await fetch(url, options);  // Await fetch to get the response
-        const json = await res.json();         // Parse the JSON response
-        console.log(json);
+        const json = await res.json();      
     } catch (error) {
         console.error("Error fetching pricebooks:", error.message);
     }
@@ -207,7 +204,6 @@ async function getbigcommercebulkid(item_id,bulk_price){
 	try{ 
 		const pMap = await loadPMap(); 
         let url = `https://api.bigcommerce.com/stores/${storehash}/v2/products/${item_id}/discount_rules`;
-        console.log(url);
         let options = {
             method: 'GET',
             headers: {
@@ -218,7 +214,6 @@ async function getbigcommercebulkid(item_id,bulk_price){
         };
         const res = await fetch(url, options);  // Await fetch to get the response
         const bulkDataResponse = await res.json();         // Parse the JSON response
-        console.log(bulkDataResponse);
         let productPriceData = [];
         if (bulkDataResponse) { 
             productPriceData = bulkDataResponse;  // Populate productPriceData with the response data
